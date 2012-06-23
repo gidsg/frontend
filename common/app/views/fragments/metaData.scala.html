@@ -14,7 +14,7 @@
     <meta name="@key" content="@value"/>
 }
     <meta name="edition" content="@Edition(request, config)"/>
-    <meta name="rendered-at" content="@{(new org.joda.time.DateTime()).toISODateTimeNoMillisString}"/>
+    <meta name="date-time-rendered" content="@{(new org.joda.time.DateTime()).toHttpDateTimeString}"/>
 
 @*
     exposes all metadata tags as javascript variables
