@@ -75,7 +75,7 @@ object Apple extends AkkaSupport {
 
   def blog = blogAgent()
 
-  def blogPara = blog.flatMap(_.body.split("""<!-- Block (\d)+ -->""").lastOption)
+  def blogPara = blog.map(_.body.split("""<!-- Block (\d)+ -->""")(1))
 
   def trails = trailAgent()
 }
