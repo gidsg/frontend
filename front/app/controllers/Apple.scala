@@ -56,7 +56,7 @@ object Apple extends AkkaSupport {
           .edition("UK")
           .pageSize(2)
           .showFields("body,liveBloggingNow")
-          .tag("-tone/minutebyminute,technology/apple")
+          .tag("-tone/minutebyminute,technology/apple,type/gallery|type/article|type/video")
           .results
 
         content map { new Content(_) }
