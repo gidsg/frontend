@@ -14,7 +14,7 @@ object Apple extends AkkaSupport {
 
   private val blogAgent = play_akka.agent[Option[Article]](None)
 
-  private val trailAgent = play_akka.agent[Seq[Trail]](Nil)
+  private val trailAgent = play_akka.agent[Seq[Content]](Nil)
 
   private var tasks: Seq[Cancellable] = Nil
 

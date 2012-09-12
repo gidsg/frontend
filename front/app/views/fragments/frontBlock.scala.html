@@ -38,13 +38,13 @@
                             </div>
                         @Apple.blog.map{ blog =>
                             <li class="b2">
-                                <p class="trail-headline"><a href="@blog.url">Latest</a></p>
+                                <p class="trail-headline"><a href="@blog.id">Latest</a></p>
                             </li>
                         }
 
                         @Apple.trails.map{ trail =>
                             <li class="b2">
-                                <p class="trail-headline"><a href="@trail.url">@trail.linkText</a></p>
+                                <p class="trail-headline"><a href="/@trail.id">@trail.linkText</a></p>
                             </li>
                         }
                          </ul>
