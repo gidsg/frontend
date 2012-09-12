@@ -13,6 +13,44 @@
         @defining(block.trails.length){ numTrails =>
             <ul class="unstyled">
                 @block.trails.take(block.description.numItemsVisible).zipWithRowInfo.map{ case (trailWithPackage, info) =>
+
+
+                @if(block.description.name == "Top stories" && info.rowNum == 2 && Apple.blog.isDefined){
+
+                     <div class="trailblock trailblock-shaded component" id="apple">
+                         <ul class="unstyled">
+                            <div class="media b2 component">
+                                <h3>
+                                    <a href="/technology/apple">Apple launch</a>
+                                    @Apple.stockPrice.map{ price => <span class="stock">AAPL: $@price</span>}
+                                    <i class="i-apple-icon"></i>
+                                </h3>
+                                @Apple.blog.map{ blog=>
+                                <div class="latest-para">
+                                    @Apple.blogPara.map{ text =>
+                                        @withJsoup(text)(
+                                            InBodyLinkCleaner,
+                                            BlockNumberCleaner
+                                        )
+                                    }
+                                </div>
+                                }
+                            </div>
+                        @Apple.blog.map{ blog =>
+                            <li class="b2">
+                                <p class="trail-headline"><a href="@blog.url">Latest</a></p>
+                            </li>
+                        }
+
+                        @Apple.trails.map{ trail =>
+                            <li class="b2">
+                                <p class="trail-headline"><a href="@trail.url">@trail.linkText</a></p>
+                            </li>
+                        }
+                         </ul>
+                     </div>
+                    }
+
                     <li>
                         @* top of if statement is for AB test *@
                         @if(trailWithPackage.layout == "impact" && ABTest(request).isB) {

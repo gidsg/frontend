@@ -2,7 +2,7 @@ import akka.actor.Cancellable
 import akka.util.duration._
 import common.{ AkkaSupport, RequestMetrics }
 import com.gu.management.play.{ RequestTimer, StatusCounters }
-import controllers.{ FrontRefresher, Front }
+import controllers.{ Apple, FrontRefresher, Front }
 import play.api.GlobalSettings
 
 object Global extends GlobalSettings with RequestTimer with StatusCounters {
@@ -17,9 +17,11 @@ object Global extends GlobalSettings with RequestTimer with StatusCounters {
 
   override def onStart(app: play.api.Application) {
     FrontRefresher.start()
+    Apple.start()
   }
 
   override def onStop(app: play.api.Application) {
     FrontRefresher.stop()
+    Apple.stop()
   }
 }
