@@ -5,7 +5,9 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteExecuteMethod;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.html5.RemoteLocalStorage;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Properties;
 
-public class SharedDriver extends EventFiringWebDriver {
+public class SharedDriver extends EventFiringWebDriver  {
 	
 	static final int WAIT_TIME = 5;
 	
@@ -43,7 +45,8 @@ public class SharedDriver extends EventFiringWebDriver {
 		Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
 	}
 
-	public SharedDriver() {
+
+    public SharedDriver() {
 		super(REAL_DRIVER);
 	}
 
@@ -57,11 +60,17 @@ public class SharedDriver extends EventFiringWebDriver {
 
 	public void clearLocalStorage() {
 		// only execute on a page
-        if (!getCurrentUrl().equals("about:blank") && REAL_DRIVER instanceof FirefoxDriver) {
+       // if (!getCurrentUrl().equals("about:blank") && REAL_DRIVER instanceof FirefoxDriver) //{
             //this doesn't work in Chrome (throws an exception see http://code.google.com/p/chromedriver/issues/detail?id=153)
-		executeScript("window.localStorage.clear();");
 
-		}
+
+            RemoteExecuteMethod method = new RemoteExecuteMethod((RemoteWebDriver) REAL_DRIVER);
+            RemoteLocalStorage localstorage = new RemoteLocalStorage(method);
+           localstorage.clear();
+
+		//executeScript("window.localStorage.clear();");
+
+		//}
 	}
 
 	public void open(String url) {
