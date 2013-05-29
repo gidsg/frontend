@@ -2,7 +2,6 @@ package com.gu.test;
 
 import cucumber.api.java.Before;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -191,7 +190,8 @@ public class SharedDriver extends EventFiringWebDriver {
 	}
 
     public void jsClick(WebElement element) {
-        ((JavascriptExecutor)this).executeScript("arguments[0].click();", element);
+       // ((JavascriptExecutor)this).executeScript("arguments[0].click();", element);
+        element.click();
     }
 
 }
