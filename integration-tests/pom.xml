@@ -39,6 +39,19 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 <cucumber.options>${tags} --tags ~@ignore --tags ~@scala-test --tags ~@brokeninchrome</cucumber.options>
             </properties>
         </profile>
+        <profile>
+            <id>phantomjs</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>driver</name>
+                    <value>phantomJS</value>
+                </property>
+            </activation>
+            <properties>
+                <cucumber.options>${tags} --tags ~@ignore --tags ~@scala-test --tags ~@brokeninchrome</cucumber.options>
+            </properties>
+        </profile>
     </profiles>
 
 	<dependencies>
